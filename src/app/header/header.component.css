@@ -1,0 +1,12 @@
+.header{
+    background-color: #74C657 !important;
+    color: #fffcfc !important;
+    text-decoration: none;
+}
+.font-size{
+    font-size: 200%;
+}
+.hover-text {
+    color: #333;
+    transition: color 0.3s ease; /* Smooth transition effect */
+  }
