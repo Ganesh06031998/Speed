@@ -3,72 +3,65 @@ import { Injectable } from "@angular/core";
 import * as Papa from 'papaparse';
 import { Observable } from "rxjs";
 import { EventModel } from './shared/events.model';
+import { EventDetailsModel } from "./shared/eventDetails.model";
 
 @Injectable({
     providedIn: "root"
 })
 export class CsvFileService {
     events: EventModel[] = [];
-    private arraryOfEvents : EventModel[]=[];
+    eventDetails : EventDetailsModel[] = [];
     
-    private csvUrl = '../assets/EventCalender.csv';
+    private csvEventUrl = '../assets/EventCalender.csv';
+    private csvEventDetailsUrl = '../assets/Events.csv';
 
     constructor(private http: HttpClient) { }
 
-    getCSVData() : Observable<any>{
-        return this.http.get(this.csvUrl, { responseType: 'text' });
+    /**
+     * Above is to fetch the Events for calendar from CSV file 
+     */
+
+    getEventsCSVData() : Observable<any>{
+        return this.http.get(this.csvEventUrl, { responseType: 'text' });
     }
 
-    parseCSVData(csvData : string) : EventModel[]{
+    parseEventsCSVData(csvData : string) : EventModel[]{
         const  parsedData = Papa.parse(csvData, { header: false, skipEmptyLines: true })
-        console.log('parsed Data '+parsedData.data);
         this.events =  parsedData.data.map((row : any) => {
             const event = new EventModel();
             event.eventName = row[0];
             event.eventType = row[1];
             event.date = row[2];
             event.status = row[3];
-            console.log(event);
             return event;
         });
-        console.log(this.events);
-        this.setArrayOfEvents(this.events);
         return this.events;
     }
 
-    fetchDataFromCSV(){
-        this.http.get(this.csvUrl, { responseType: 'text' }).subscribe(
-            (csvData) => {
-                console.log(csvData);
-                this.convertCSVtoObject(csvData);
-            },
-            (error) => {
-                console.error('Error while fetching from CSV data: '+error);
-            }
-        );
-    }
-
-    convertCSVtoObject(csvData : any){
-        const  parsedData = Papa.parse(csvData, {
-            header: true,
-            complete: (result) =>{
-                console.log(result.data);
-                this.processCSVObjects(result.data);
-            },
-            error: (error) =>{
-                console.error('Error Parsing CSV: '+error);
-            },
-        });
-    }
-
-    processCSVObjects(data : any[]){
-        console.log('CSV Objects:', data);
-    }
-
-    setArrayOfEvents(data : EventModel[]){
-        this.arraryOfEvents = data;
-    }
     getArrayOfEvents(): EventModel[]{
-        return this.arraryOfEvents;
+        return this.events;
+    }
+    
+    /**
+     * Above is to fetch the EventDetails from CSV file 
+     */
+    getEventDetailsCSVData() : Observable<any>{
+        return this.http.get(this.csvEventDetailsUrl, { responseType : 'text' });
+    }
+
+    parseEventDetailsCSVData(csvData : string) : EventDetailsModel[]{
+        const  parsedData = Papa.parse(csvData, { header: false, skipEmptyLines: true })
+        this.eventDetails =  parsedData.data.map((row : any) => {
+            const details = new EventDetailsModel();
+            details.imgPath = row[0];
+            details.title = row[1];
+            details.description = row[2];
+            return details;
+        });
+        return this.eventDetails;
+    }
+
+    getArrayOfEventDetails(): EventDetailsModel[]{
+        return this.eventDetails;
     }
 }

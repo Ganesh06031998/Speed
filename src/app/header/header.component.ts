@@ -16,9 +16,7 @@ export class HeaderComponent implements OnInit {
   ngOnInit(): void {
     this.dataService.currentMessage.subscribe(
       message => {
-        console.log('Header Message '+message);
         this.pageComponent = message;
-        console.log('pageStatus ' + this.pageComponent);
       }
       )
       this.dataService.changeMessage('HeaderComponent');

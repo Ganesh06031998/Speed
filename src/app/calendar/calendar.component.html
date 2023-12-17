@@ -1,46 +1,38 @@
 <html>
-    <head>
-        <title>Calender</title>
-        </head>
-        <body>
-            <!--Intro Section-->
-            <div>
-                <h2 class="text-center">Event Schedule</h2>
-                <br/>
-                <p class="text-center">This is the planned schedule which contains list of events of the following dates.click on event to know more</p>
-                </div>
-                <!--Table Section-->
-                <div style="padding: 5%;">
-                    <table class="table" >
-                        <thead class="table-dark" style ="background-color:#74C657;padding: 5%;">
-                        <tr>
-                            <th>Event Name</th>
-                            <th>EventType</th>
-                            <th>Date</th>
-                            <th>Status</th>
-                        </tr>
-                        </thead>
-                        <tbody>
-                        <tr>
-                            <td>Unscramble</td>
-                            <td>Individual</td>
-                            <td>15 Dec2023</td>
-                            <td>Planned</td>
-                        </tr>
-                        <tr>
-                            <td>Crossword Puzzle</td>
-                            <td>Individual</td>
-                            <td>15 Dec2023</td>
-                            <td>Planned</td>
-                        </tr>
-                        <tr>
-                            <td>1 minute Speed Story</td>
-                            <td>Individual</td>
-                            <td>15 Dec2023</td>
-                            <td>Planned</td>
-                        </tr>
-                        </tbody>
-                    </table>
-                    </div>
-            </body>
+
+<head>
+    <title>Calender</title>
+</head>
+
+<body>
+    <!--Intro Section-->
+    <div>
+        <h2 class="text-center">Event Schedule</h2>
+        <br />
+        <p class="text-center">This is the planned schedule which contains list of events of the following dates.click
+            on event to know more</p>
+    </div>
+    <!--Table Section-->
+    <div style="padding: 5%;" class="jumbotron container">
+        <table class="table let events of eventDetails">
+            <thead class="table-dark" style="background-color:#74C657;padding: 5%;">
+                <tr>
+                    <th>Event Name</th>
+                    <th>EventType</th>
+                    <th>Date</th>
+                    <th>Status</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor="let events of eventDetails">
+                    <td>{{ events.eventName }}</td>
+                    <td>{{ events.eventType}}</td>
+                    <td>{{ events.date}}</td>
+                    <td>{{ events.status}}</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</body>
+
 </html>

@@ -15,9 +15,7 @@ export class FooterComponent implements OnInit {
   ngOnInit(): void {
     this.dataService.currentMessage.subscribe(
       message => {
-        console.log('Header Message '+message);
         this.pageComponent = message;
-        console.log('footer Status ' + this.pageComponent);
       }
       )
   }
