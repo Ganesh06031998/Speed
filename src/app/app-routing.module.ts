@@ -8,6 +8,7 @@ import { IndividualBoardComponent } from './individual-board/individual-board.co
 import { GroupBoardComponent } from './group-board/group-board.component';
 
 export const routes: Routes = [
+    { path: '', redirectTo: '/speed', pathMatch: 'full' },
     { path: 'speed', component: HomeComponent },
     { path: 'calender', component: CalendarComponent },
     { path: 'event', component: EventComponent },

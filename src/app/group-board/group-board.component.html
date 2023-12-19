@@ -1,5 +1,5 @@
 <div style="padding: 5%;">
-    <table class="table" >
+    <table class="table  table-hover table-striped" >
         
         <thead class="table-dark" style ="background-color:#74C657;padding: 5%;">
             <tr>
@@ -11,12 +11,12 @@
         </thead>
         
         <tbody>
-          <tr>
-            <td>5</td>
-            <td>Sirius</td>
-            <td>Ganesh,Krupha,Anitha,Karthik</td>
-            <td>300</td>
-            </tr>
+          <tr *ngFor="let team of teamList">
+            <td>{{ team.teamNumber }}</td>
+            <td>{{ team.teamName }}</td>
+            <td [innerHTML]="getTeamMembers(team)"></td>
+            <td>{{ team.score}}</td>
+        </tr>
         </tbody>
       </table>
     </div>

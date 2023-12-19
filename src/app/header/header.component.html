@@ -1,14 +1,14 @@
 <nav class="navbar navbar-expand navbar-default p-0 sticky-top">
     <div class="container-fluid header p-2">
         <div class="navbar-header">
-            <a href="speed" class="header font-weight-bold font-size nav-item">SPEED</a>
+            <a routerLink="speed" class="header font-weight-bold font-size nav-item">SPEED</a>
         </div>
         <div class="collapse navbar-collapse justify-content-end">
             <ul class="nav navbar-right p-0">
                 <li><a routerLink="calender" class="header nav-link">CALENDAR</a></li>
                 <li><a routerLink="event" class="header nav-link">EVENT</a></li>
                 <li><a routerLink="leaderboard" class="header nav-link">LEADERBOARD</a></li>
-                <li><a href="speed" class="header nav-link" *ngIf="pageComponent!=='HomeComponent'"><i class="fas fa-home fa-2x"></i></a></li>
+                <li><a routerLink="speed" class="header nav-link" *ngIf="pageComponent!=='HomeComponent'"><i class="fas fa-home fa-2x"></i></a></li>
             </ul>
         </div>
     </div>

@@ -3,6 +3,8 @@ import { Injectable } from "@angular/core";
 import * as Papa from 'papaparse';
 import { Observable } from "rxjs";
 import { EventModel } from './shared/events.model';
+import { IndividualModel } from "./shared/individual.model";
+import { TeamModel } from "./shared/team.model";
 import { EventDetailsModel } from "./shared/eventDetails.model";
 
 @Injectable({
@@ -10,7 +12,11 @@ import { EventDetailsModel } from "./shared/eventDetails.model";
 })
 export class CsvFileService {
     events: EventModel[] = [];
+    individualBoard: IndividualModel[] = [];
+    teamBoard: TeamModel[] = [];
     eventDetails : EventDetailsModel[] = [];
+    private arraryOfIndividualBoard: IndividualModel[] = [];
+    private arraryOfGroupBoard: TeamModel[] = [];
     
     private csvEventUrl = '../assets/EventCalender.csv';
     private csvEventDetailsUrl = '../assets/Events.csv';
@@ -64,4 +70,73 @@ export class CsvFileService {
     getArrayOfEventDetails(): EventDetailsModel[]{
         return this.eventDetails;
     }
+
+    getCSVData(csvurl: string): Observable<any> {
+        return this.http.get(csvurl, { responseType: 'text' });
+    }
+
+    parseCSVDataIndividual(csvData: string): IndividualModel[] {
+        const parsedData = Papa.parse(csvData, {
+          header: false,
+          skipEmptyLines: true,
+        });
+        console.log('parsed Data ' + parsedData.data);
+        this.individualBoard = parsedData.data.map((row: any) => {
+          const user = new IndividualModel();
+          user.ecode = row[0];
+          user.userName = row[1];
+          user.score = row[2];
+          return user;
+        });
+        console.log(this.individualBoard);
+        this.setarraryOfIndividualBoard(this.individualBoard);
+        return this.individualBoard;
+      }
+    
+      parseCSVDataTeam(csvData: string,userlist:IndividualModel[]): TeamModel[] {
+        const parsedData = Papa.parse(csvData, {
+          header: false,
+          skipEmptyLines: true,
+        });
+        console.log('parsed Data ' + parsedData.data);
+        this.teamBoard = parsedData.data.map((row: any) => {
+          const team = new TeamModel();
+          team.teamNumber = row[0];
+          team.teamName = row[1];
+          let resultArray: string[] = row[2]?.split('<br>') ?? []; 
+          console.log("User Available:::"+resultArray);
+          const matchingUsernames = resultArray.filter(username => 
+            userlist.some(user => user.userName === username)
+          );
+          // Add the matching usernames to teamMembers
+          team.teamMembers = userlist.filter(user => matchingUsernames.includes(user.userName));
+          resultArray.forEach(username => {
+            if (!matchingUsernames.includes(username)) {
+              const newUser = new IndividualModel();
+              newUser.userName = username;
+              newUser.ecode=0;
+              // Set default values for other properties if needed
+              team.teamMembers.push(newUser);
+              userlist.push(newUser);
+            }
+          });
+          team.score = row[3];
+          console.log("TEAM VALUES::::::"+team);
+          return team;
+        });
+        this.setarraryOfGroupBoard(this.teamBoard);
+        return this.teamBoard;
+      }
+      getarraryOfIndividualBoard(): IndividualModel[] {
+        return this.arraryOfIndividualBoard;
+      }
+      setarraryOfIndividualBoard(value: IndividualModel[]) {
+        this.arraryOfIndividualBoard = value;
+      }
+      getarraryOfGroupBoard(): TeamModel[] {
+        return this.arraryOfGroupBoard;
+      }
+      setarraryOfGroupBoard(value: TeamModel[]) {
+        this.arraryOfGroupBoard = value;
+      }
 }
