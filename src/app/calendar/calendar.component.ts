@@ -10,14 +10,23 @@ import { EventModel } from '../shared/events.model';
 })
 export class CalendarComponent implements OnInit {
   eventDetails : EventModel[]=[];
+  private csvEventUrl = '../../assets/EventCalender.csv';
 
   constructor(private dataService : DataService, private csvFileService : CsvFileService) { }
 
   ngOnInit(): void {
     this.dataService.changeMessage('CalendarComponent');
-    this.getEvents();
+    this.fetchCSVData();
   }
-  getEvents(){
-    this.eventDetails = this.csvFileService.getArrayOfEvents();
+  
+  fetchCSVData(){
+    this.csvFileService.getCSVData(this.csvEventUrl).subscribe(
+      (data: string) => {
+        this.eventDetails = this.csvFileService.parseEventsCSVData(data);
+      },
+      (error) => {
+        console.error('Error fetching CSV data:', error);
+      }
+    )
   }
 }
