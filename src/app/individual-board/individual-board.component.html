@@ -1,39 +1,28 @@
 <div style="padding: 5%;">
-    <table class="table  table-hover table-striped" >
-        
-        <thead class="table-dark" style ="background-color:#74C657;padding: 5%;">
-            <tr>
-              <th style="text-align: center;" colspan="3">
-                Event
-                <select id="categories" style="background: white;">
-                  <option value="" disabled selected>Overall Details</option>
-                  <option>Unscramble</option>
-                  <option>Teasure Hunt</option>
-                  <option>SPEED rapid fire quiz</option>
-                  <option>One minute SPEED story</option>
-                  <option>SPEED networking event</option>
-                  <option>SPEED learning workshop</option>
-                  <option>Learning and devlopment community</option>
-                  <option>Flash decision making challenge</option>
-                  <option>CEO SPEED Q&A</option>
-                </select>
-                <!-- <button type="button" class="btn btn-success" onclick="myfn()">Apply</button> -->
-                <a href="#" style="color:white;text-decoration: none;"><i class="fas fa-search"></i></a>
-              </th>
-            </tr>
-            <tr>
-                <th>Ecode</th>
-                <th>Name</th>
-                <th>Score</th>
-            </tr>
-        </thead>
-        
-        <tbody>
-          <tr *ngFor="let user of userList">
-            <td>{{ user.ecode }}</td>
-            <td [innerHTML]=getuserName(user)></td>
-            <td>{{ user.score }}</td>
-        </tr>
-        </tbody>
-      </table>
-    </div>
+  <tr class="" style="background-color: #74C657;">
+    <th style="text-align: center;" colspan="3">
+      <select id="categories" style="background: white;" [(ngModel)]="selectedOption" (change)="onOptionChange()">
+        <option value="" disabled selected>Select your option</option>
+        <option *ngFor="let option of options">{{ option.label }}</option>
+      </select>
+      <!-- <a href="#" style="text-decoration: none; color: white;"><i class="fas fa-search"></i></a> -->
+    </th>
+  </tr>
+  <table class="table  table-hover table-striped mt-1">
+    <thead class="table-dark" style="background-color:#74C657;padding: 5%;">
+      <tr>
+        <th>Ecode</th>
+        <th>Name</th>
+        <th>Score</th>
+      </tr>
+    </thead>
+
+    <tbody>
+      <tr *ngFor="let user of userList">
+        <td>{{ user.ecode }}</td>
+        <td [innerHTML]=getuserName(user)></td>
+        <td>{{ user.score }}</td>
+      </tr>
+    </tbody>
+  </table>
+</div>
