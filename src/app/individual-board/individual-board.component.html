@@ -1,28 +1,39 @@
-<div style="padding: 5%;">
-  <tr class="" style="background-color: #74C657;">
-    <th style="text-align: center;" colspan="3">
-      <select id="categories" style="background: white;" [(ngModel)]="selectedOption" (change)="onOptionChange()">
-        <option value="" disabled selected>Select your option</option>
-        <option *ngFor="let option of options">{{ option.label }}</option>
-      </select>
-      <!-- <a href="#" style="text-decoration: none; color: white;"><i class="fas fa-search"></i></a> -->
-    </th>
-  </tr>
-  <table class="table  table-hover table-striped mt-1">
-    <thead class="table-dark" style="background-color:#74C657;padding: 5%;">
-      <tr>
-        <th>Ecode</th>
-        <th>Name</th>
-        <th>Score</th>
-      </tr>
-    </thead>
+<div>
+  <!--Navbar for events-->
+  <mat-toolbar class="m-2 " style="overflow-x: auto;background-size: cover;background-color: #74C657;">
+    <mat-toolbar-row class="py-5 scrollbar-primary">
+      <a class="icon" *ngFor="let option of options" (click)="handleValue(option.path)">{{ option.value }}</a>
+    </mat-toolbar-row>
+  </mat-toolbar>
+  </div>
+<div style="padding: 5%;" class="mat-elevation-z8">
+  <!--Filter for Table-->
+  <div class="row mb-3">
+    <div class="col-3">
+      <input type="text" class="form-control" placeholder="Filter by Ecode" (input)="applyFilter($event, 'Ecode')">
+    </div>
+    <div class="col-3">
+      <input type="text" class="form-control" placeholder="Filter by Name" (input)="applyFilter($event, 'Name')">
+    </div>
+    <div class="col-3">
+      <input type="text" class="form-control" placeholder="Filter by Score" (input)="applyFilter($event, 'Score')">
+    </div>
+  </div>
+  <!--LeaderBoard Table-->
+  <table mat-table [dataSource]="dataSource" class="mat-elevation-z8 table-striped table-hover" matSort>
 
-    <tbody>
-      <tr *ngFor="let user of userList">
-        <td>{{ user.ecode }}</td>
-        <td [innerHTML]=getuserName(user)></td>
-        <td>{{ user.score }}</td>
-      </tr>
-    </tbody>
+    <ng-container *ngFor="let col of displayedColumns" [matColumnDef]="col">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header style="background-color: #74C657;color: white;">{{ col }}</th>
+      <td mat-cell *matCellDef="let team">
+        <ng-container>
+          {{ team[col] }}
+        </ng-container>
+      </td>
+    </ng-container>
+
+    <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+    <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
   </table>
+  <!--Pagination-->
+  <mat-paginator [pageSizeOptions]="[5, 10, 25]" showFirstLastButtons></mat-paginator>
 </div>

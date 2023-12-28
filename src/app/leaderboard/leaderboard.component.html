@@ -1,18 +1,26 @@
-<div style="padding:0%;margin: 0%;width: 100%;height: 100%;object-fit: cover;object-position: center center;">
-<div class="mt-1">
-    <table class="p-5" style="width:100%;text-align:center;background-color: #74C657; border-radius: 10px;">
-        <tr style="padding: 4%;">
-            <th><a routerLink="individual" style="text-decoration: none;color:white;" class="p-1">Individual Events</a></th>
-            <th><a routerLink="team" style="text-decoration: none;color:white;" class="p-1">Team Events</a></th>
-        </tr>
-    </table>
-</div>
-<div class="mt-3 mb-1"style="width:100%;" >
-    <router-outlet>
-    </router-outlet>
-    <img *ngIf=" isChildWithSubchild()" src="../../assets/leaderboard.jpg" alt="Leaderboard image" class="darken-image">
-    <div *ngIf=" isChildWithSubchild()" class="text-overlay">
-        Click on respective tab to view the leaderboard
+<div class="mt-3" style="padding:0%;margin: 0%;width: 100%;height: 100%;object-fit: cover;object-position: center center;">
+    <div *ngIf="!isChildWithSubchild()" >
+        <table  style="width:100%;text-align:center;background-color: #74C657; border-radius: 10px;">
+            <tr style="padding: 4%;" class="p-5">
+                <th class="p-4"><a routerLink="individual" style="text-decoration: none;color:white;font-size:large;" >Individual Events</a></th>
+                <th class="p-4"><a routerLink="team" style="text-decoration: none;color:white;font-size:large;" >Team Events</a></th>
+            </tr>
+        </table>
     </div>
-</div>
-</div>
+    <div *ngIf=" isChildWithSubchild()" class="container-fluid dark-overlay" >
+        <div class="row">
+          <div class="col-md-6 image-css darkened-image" routerLink="individual" style="background-image: url(../../assets/individual\ Event.png);">
+            <!-- Left Division Content -->
+            <h1 class="h1-css ml-3">Individual Events</h1>
+          </div>
+          <div class="col-md-6 image-css"routerLink="team" style="background-image: url(../../assets/group\ Event.jpg);">
+            <!-- Right Division Content -->
+            <h1 class="h1-css">Team Events</h1>
+          </div>
+        </div>
+    </div>
+    <div class="mt-3 mb-1"style="width:100%;" >
+        <router-outlet>
+        </router-outlet>
+    </div>
+    </div>

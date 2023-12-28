@@ -1,0 +1,44 @@
+/*Toolbar navigation CSS*/
+.mat-toolbar-row {
+    margin: 0px !important;
+    justify-content: center !important;
+    text-decoration: none !important;
+}
+
+/*Event CSS*/
+.icon {
+    width: 220px;
+    height: 50px;
+    border-radius: 10px;
+    padding-top: 1%;
+    text-align: center;
+    text-decoration: none;
+    background-color: white;
+    color: #74C657;
+    text-decoration: none !important;
+    margin: 2%;
+    justify-content: center !important;
+}
+
+/*Event hover CSS*/
+.icon:hover {
+    color: #7d867a !important;
+}
+
+/* center alignment of table content*/
+.mat-mdc-cell,
+.mat-sort-header-container {
+    justify-content: center !important;
+    text-align: center !important;
+}
+
+/* margin alignment for mat-tool bar*/
+.mat-toolbar-multiple-rows {
+    display: inherit !important;
+    margin-left: -1px !important;
+}
+
+/* Sort arrow color value*/
+.mat-sort-header-arrow {
+    color: white var(--mat-sort-arrow-color) !important;
+}

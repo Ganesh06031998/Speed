@@ -10,7 +10,7 @@ import { EventModel } from '../shared/events.model';
 })
 export class CalendarComponent implements OnInit {
   eventDetails : EventModel[]=[];
-  private csvEventUrl = '../../assets/EventCalender.csv';
+  private csvEventUrl = '../../assets/CSV files/EventCalender.csv';
 
   constructor(private dataService : DataService, private csvFileService : CsvFileService) { }
 

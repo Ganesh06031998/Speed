@@ -1,15 +1,26 @@
-.darken-image {
-    filter: brightness(0.7);
-    width: inherit;
-  }
+/*Style for the Event containers*/
+.container-fluid{
+  margin: 0px !important;
+  padding: 0px !important;
+}
+.row {
+  margin-right: -1px !important;}
 
-  .text-overlay {
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    color: white;
-    font-size: 24px;
-    font-weight: bold;
-    text-align: center;
-  }
+
+.image-css{
+  background-size:cover;
+  padding-top:30%;
+  padding-bottom:30%;
+  border:2px solid black;
+  filter: brightness(0.9);
+  text-align: center;
+}
+.h1-css{
+  color: black;
+  background-color: #74C657;
+}
+
+.image-css:hover{
+  filter: brightness(0.5); 
+  text-shadow: 0 0 30px rgba(255, 255, 255); 
+}

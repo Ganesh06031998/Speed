@@ -1,7 +1,7 @@
 export class IndividualModel{
-    ecode: number | undefined;
-    userName!: string;
-    score: number | undefined;
+    Ecode: number | undefined;
+    Name!: string;
+    Score: number | undefined;
     // constructor(ecode : number, userName : string, score : number){ 
 
     // }

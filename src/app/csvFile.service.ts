@@ -18,8 +18,8 @@ export class CsvFileService {
     private arraryOfIndividualBoard: IndividualModel[] = [];
     private arraryOfGroupBoard: TeamModel[] = [];
     
-    private csvEventUrl = '../assets/EventCalender.csv';
-    private csvEventDetailsUrl = '../assets/Events.csv';
+    private csvEventUrl = '../assets/CSV files/EventCalender.csv';
+    private csvEventDetailsUrl = '../assets/CSV files/Events.csv';
 
     constructor(private http: HttpClient) { }
 
@@ -83,9 +83,9 @@ export class CsvFileService {
         console.log('parsed Data ' + parsedData.data);
         this.individualBoard = parsedData.data.map((row: any) => {
           const user = new IndividualModel();
-          user.ecode = row[0];
-          user.userName = row[1];
-          user.score = row[2];
+          user.Ecode = row[0];
+          user.Name = row[1];
+          user.Score = row[2];
           return user;
         });
         console.log(this.individualBoard);
@@ -101,26 +101,26 @@ export class CsvFileService {
         console.log('parsed Data ' + parsedData.data);
         this.teamBoard = parsedData.data.map((row: any) => {
           const team = new TeamModel();
-          team.teamNumber = row[0];
-          team.teamName = row[1];
+          team.TeamNumber = row[0];
+          team.TeamName = row[1];
           let resultArray: string[] = row[2]?.split('<br>') ?? []; 
           console.log("User Available:::"+resultArray);
           const matchingUsernames = resultArray.filter(username => 
-            userlist.some(user => user.userName === username)
+            userlist.some(user => user.Name === username)
           );
           // Add the matching usernames to teamMembers
-          team.teamMembers = userlist.filter(user => matchingUsernames.includes(user.userName));
+          team.TeamMembers = userlist.filter(user => matchingUsernames.includes(user.Name));
           resultArray.forEach(username => {
             if (!matchingUsernames.includes(username)) {
               const newUser = new IndividualModel();
-              newUser.userName = username;
-              newUser.ecode=0;
+              newUser.Name = username;
+              newUser.Ecode=0;
               // Set default values for other properties if needed
-              team.teamMembers.push(newUser);
+              team.TeamMembers.push(newUser);
               userlist.push(newUser);
             }
           });
-          team.score = row[3];
+          team.Score = row[3];
           console.log("TEAM VALUES::::::"+team);
           return team;
         });
