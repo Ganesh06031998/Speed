@@ -1,12 +1,55 @@
-.header{
+.header {
     background-color: #74C657 !important;
     color: #fffcfc !important;
     text-decoration: none;
 }
-.font-size{
+
+.font-size {
     font-size: 200%;
 }
+
 .hover-text {
     color: #333;
-    transition: color 0.3s ease; /* Smooth transition effect */
-  }
+    transition: color 0.3s ease;
+    /* Smooth transition effect */
+}
+
+.fas {
+    font-size: medium;
+}
+
+/**Media Query for tablet**/
+@media screen and (max-width: 768px) {
+    .font-size {
+        font-size: 100%;
+    }
+
+    .items {
+        font-size: smaller;
+    }
+
+    .val {
+        justify-content: center !important;
+    }
+
+    .nav-link {
+        display: block;
+        padding: 0.3rem 0.5rem;
+    }
+
+    .fas {
+        font-size: small;
+    }
+}
+
+/**Media Query for mobile**/
+@media screen and (max-width: 390px) {
+
+    .items {
+        font-size: x-small;
+    }
+    .nav-link {
+        display: block;
+        padding: 0.4rem 0.4rem !important;
+    }
+}

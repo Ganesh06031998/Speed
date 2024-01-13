@@ -1,5 +1,6 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
+import { CountUpModule } from 'ngx-countup';
 import { HttpClientModule } from '@angular/common/http';
 import { FormsModule } from '@angular/forms';
 import { MatToolbarModule } from '@angular/material/toolbar';
@@ -19,6 +20,9 @@ import { MatPaginatorModule } from '@angular/material/paginator';
 import { MatSortModule } from '@angular/material/sort';
 import { MatInputModule } from '@angular/material/input';
 import { SortMembersPipe } from './sort-members.pipe';
+import { LandingpageComponent } from './landingpage/landingpage.component';
+import { NgChartsModule } from 'ng2-charts';
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -30,9 +34,11 @@ import { SortMembersPipe } from './sort-members.pipe';
     GroupBoardComponent,
     HeaderComponent,
     FooterComponent,
-    SortMembersPipe
+    SortMembersPipe,
+    LandingpageComponent
   ],
   imports: [
+    NgChartsModule,
     AppRoutingModule,
     HttpClientModule,
     FormsModule,
@@ -41,7 +47,8 @@ import { SortMembersPipe } from './sort-members.pipe';
     MatPaginatorModule,
     MatTableModule,
     MatSortModule,
-    MatInputModule
+    MatInputModule,
+    CountUpModule
   ],
   providers: [],
   bootstrap: [AppComponent]

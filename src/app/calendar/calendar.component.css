@@ -1,3 +1,22 @@
 .backGround{
     background-image: url('../../assets/BackGroungImg.png');
 }
+.text-center{
+    padding-top: 2% !important;
+}
+
+/**Media Query for tablet**/
+@media screen and (max-width: 768px) {
+    body{
+        font-size: small;
+        padding: 2%;
+    }
+}
+
+/**Media Query for mobile**/
+@media screen and (max-width: 390px) {
+    body{
+        font-size: x-small;
+        padding: 2%;
+    }
+}

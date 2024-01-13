@@ -1,0 +1,15 @@
+.score-grid{
+    padding: 5%;;
+}
+
+.col-md-6{
+    padding: 3%;
+}
+
+.hover:hover{
+    background-color: #ccd4c8;
+    color: white;
+}
+.color{
+    color: #74C657;
+}
