@@ -6,6 +6,7 @@ import { MatPaginator } from '@angular/material/paginator';
 import { MatTableDataSource } from '@angular/material/table';
 import { MatSort } from '@angular/material/sort';
 import { TeamModel } from '../shared/team.model';
+import { ActivatedRoute, Router } from '@angular/router';
 
 @Component({
   selector: 'app-individual-board',
@@ -26,21 +27,29 @@ export class IndividualBoardComponent implements OnInit {
     {value:'Overall',  path:'../assets/CSV files/IndividualLeaderboard.csv',image:'../assets/Overall.png',selected:false},
     {value:'Overall Team', path:'../assets/CSV files/groupLeaderboard.csv',image:'../assets/Overall.png',selected:false},
     {value:'Unscramble', path:'../assets/CSV files/Unscramble.csv',image:'../assets/Unscramble.jpg',selected:false},
+    {value:'Mascot Challenge', path:'../assets/CSV files/Mascot.csv',image:'../assets/Mascot.jpg',selected:false},
     {value:'SPEED Rapid Fire Quiz',  path:'../assets/CSV files/SPEEDRapidFireQuiz.csv',image:'../assets/rapid fire.png',selected:false},
     {value:'One Minute SPEED Story', path:'../assets/CSV files/OneMinuteSPEEDStory.csv',image:'../assets/one minute speed story.png',selected:false},
     {value:'Learning and Development Community', path:'../assets/CSV files/LearningandDevlopmentCommunity.csv',image:'../assets/learning and dev.png',selected:false},
+    {value:'SPEED Learning Workshop', path:'../assets/CSV files/LearningWorkshop.csv',image:'../assets/learning workshop.jpg',selected:false},
     {value:'Flash Decision Making Challenge',path:'../assets/CSV files/FlashDecisionMakingChallenge.csv',image:'../assets/Decision making.jpg',selected:false},
-   {value:'Teasure Hunt', path:'../assets/CSV files/TeasureHunt.csv',image:'../assets/Overall.png',selected:false},
-  {value:'SPEED Networking Event', path:'../assets/CSV files/SPEEDNetworkingEvent.csv',image:'../assets/Overall.png',selected:false}
+   {value:'Treasure Hunt', path:'../assets/CSV files/TeasureHunt.csv',image:'../assets/Teasure Hunt.jpg',selected:false},
+  {value:'SPEED Networking Event', path:'../assets/CSV files/SPEEDNetworkingEvent.csv',image:'../assets/networking event.jpg',selected:false}
   ];
 
   dataSource = new MatTableDataSource<any>(this.userList);
   displayedColumns: string[] = ['Ecode', 'Name', 'Score'];
-  constructor(private dataService: DataService, private csvFileService: CsvFileService,private cdr: ChangeDetectorRef) { }
+  constructor(private dataService: DataService,  private route: ActivatedRoute, private csvFileService: CsvFileService,private cdr: ChangeDetectorRef) { }
 
   ngOnInit(): void {
     this.dataService.changeMessage('IndividualBoardComponent');
-    this.fetchCSVData(this.overall);
+    const redirectedFrom = this.route.snapshot.queryParams['redirectedFrom'];
+    if (redirectedFrom) {
+      this.handleEvent(redirectedFrom);
+    } else {
+      // Load overall data if not redirected from Events
+      this.handleEvent('Overall');
+    }
   }
 
   ngAfterViewInit() {
@@ -105,6 +114,12 @@ export class IndividualBoardComponent implements OnInit {
     return "";
   }
 
+  handleEvent(event : string){
+    this.selectedOption = this.options.find(option => {
+      return option.value===event;
+    });
+    this.handleValue(this.selectedOption.path);
+  }
   //Handle all eventCategory events
   handleValue(csvUrl : string): void{
     this.options.forEach(option => {
