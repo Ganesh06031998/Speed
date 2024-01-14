@@ -158,18 +158,40 @@ export class IndividualBoardComponent implements OnInit {
     this.dataSource.filter = filterValue;
   }
 
-  calculateContainerHeight(): number {
-    // Assuming you have access to the dataSource with rows
-    const numberOfRows = this.dataSource.data.length || 1; // If no rows, set a minimum height
+  calculateContainerHeight(): string {
+    const minHeight = 500; // Set a minimum height
+  const itemsPerPage = this.paginator?.pageSize || 5; // Default to 5 if paginator is undefined
+  const currentPage = this.paginator?.pageIndex + 1 || 1; // Default to page 1 if paginator is undefined
 
-    // You may adjust the multiplier or add extra padding based on your needs
-    const rowHeight = 40; // Adjust this value based on your row height
-    const minHeight = 200; // Set a minimum height
-    this.cdr.detectChanges();
-    return Math.max(minHeight, numberOfRows * rowHeight);
-  }
-  onPageSizeChange() {
-    // Update the container height when the page size changes
-    this.calculateContainerHeight();
+  console.log(itemsPerPage);
+  // Calculate the height based on the number of items per page and the current page
+  let calculatedHeight=0;
+  if(itemsPerPage===10)
+  calculatedHeight = Math.max(minHeight, itemsPerPage * currentPage * 70); 
+  else// Adjust the multiplier as needed
+  calculatedHeight = Math.max(minHeight, itemsPerPage * currentPage * 70); 
+
+  const mediaQuery = window.matchMedia('(max-width: 768px)'); // Adjust the max-width as needed
+  if (mediaQuery.matches && this.dataSource.data.length >=10) {
+    if(itemsPerPage===10)
+    calculatedHeight = Math.max(minHeight, itemsPerPage * currentPage * 70); 
+    else
+    calculatedHeight = Math.max(minHeight, itemsPerPage * currentPage * 50); 
+  } 
+
+  const mediaQuery1 = window.matchMedia('(max-width: 490px)'); // Adjust the max-width as needed
+  if (mediaQuery1.matches && this.dataSource.data.length >=10) {
+    if(itemsPerPage===10)
+    calculatedHeight = Math.min(minHeight, itemsPerPage * currentPage * 100); 
+    else if (itemsPerPage===25 && this.dataSource.data.length >=25)
+    calculatedHeight = Math.max(minHeight, itemsPerPage * currentPage * 40); 
+    else
+    calculatedHeight = Math.min(minHeight, itemsPerPage * currentPage * 70); 
+  } 
+  else if(mediaQuery1.matches)
+  calculatedHeight = 250;
+  console.log("Calculate height",calculatedHeight);
+    return calculatedHeight + 'px';
+    
   }
 }

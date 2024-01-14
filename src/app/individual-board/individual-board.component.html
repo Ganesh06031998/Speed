@@ -38,11 +38,11 @@
       <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
     </table>
     <!--Pagination-->
-    <mat-paginator [pageSizeOptions]="[5, 10, 25]" showFirstLastButtons (change)="onPageSizeChange()"></mat-paginator>
+    <mat-paginator [pageSizeOptions]="[5, 10, 25]" showFirstLastButtons></mat-paginator>
   </div>
   <div class="col-md-3">
   <!--Navbar for events-->
-  <div class="container vertical-scrollable" data-mdb-perfect-scrollbar-init style="background-size: cover; background-color: #74C657; height: 500px;border-radius: 10px;">
+  <div class="container vertical-scrollable" data-mdb-perfect-scrollbar-init style="background-size: cover; background-color: #74C657; height: 500px;border-radius: 10px;" [style.height]="calculateContainerHeight()" >
     <div class="row text-center" >
         <div class="col-sm-8 m-2" [class.selected]="option.selected" *ngFor="let option of options" (click)="handleValue(option.path)" [style.background-image]="'url(\'' + option.image + '\')'"  >
         <div class="text-with-border">{{ option.value }}</div></div>
