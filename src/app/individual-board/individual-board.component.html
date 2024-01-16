@@ -1,6 +1,12 @@
-<div class="m-4">
-<div class="row">
+<div class="row m-4">
   <div style="padding: 3%; border-radius: 10px;" class="mat-elevation-z8 col-md-9 ">
+    <ng-container  *ngIf="!dataAvailable">
+      <div class="coming-soon-overlay">
+        <p class="coming-soon-text">Coming Soon</p>
+      </div>
+    </ng-container>
+    <div   [ngClass]="{'blur': !dataAvailable}"  >
+    
     <div *ngIf="selectedOption" class="mb-3">
       <h4>{{ selectedOption.value }} Leaderboard</h4>
     </div>
@@ -13,8 +19,8 @@
       </ng-container>
     </div>
     
-    <!--LeaderBoard Table-->
-    <table mat-table [dataSource]="dataSource" class="mat-elevation-z8 table-striped table-hover " matSort>
+     <!--LeaderBoard Table-->
+    <table  mat-table [dataSource]="dataSource" class="mat-elevation-z8 table-striped table-hover " matSort>
   
       <ng-container *ngFor="let col of displayedColumns" [matColumnDef]="col">
         <th mat-header-cell *matHeaderCellDef mat-sort-header style="background-color: #74C657;color: white;">{{ col }}</th>
@@ -37,18 +43,33 @@
       <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
       <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
     </table>
+  
     <!--Pagination-->
     <mat-paginator [pageSizeOptions]="[5, 10, 25]" showFirstLastButtons></mat-paginator>
+    <!--Points indication-->
+    <div class="row">
+      <div class="col-md-3">
+      <p>100 points - Winner</p>
+      </div>
+      <div class="col-md-3">
+      <p>50 points - 1st Runner</p>
+      </div>
+      <div class="col-md-3">
+        <p>25 points - 2nd Runner</p>
+      </div>
+      <div class="col-md-3">
+        <p>1 point - Participant</p>
+      </div>
+    </div>
   </div>
+  </div>
+
   <div class="col-md-3">
   <!--Navbar for events-->
   <div class="container vertical-scrollable" data-mdb-perfect-scrollbar-init style="background-size: cover; background-color: #74C657; height: 500px;border-radius: 10px;" [style.height]="calculateContainerHeight()" >
     <div class="row text-center" >
         <div class="col-sm-8 m-2" [class.selected]="option.selected" *ngFor="let option of options" (click)="handleValue(option.path)" [style.background-image]="'url(\'' + option.image + '\')'"  >
-        <div class="text-with-border">{{ option.value }}</div></div>
-  </div>
-      
+        <div class="text-with-border">{{ option.value }}</div>
   </div>
   </div>
-</div>
 </div>

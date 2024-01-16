@@ -20,6 +20,7 @@ export class IndividualBoardComponent implements OnInit {
   userList: IndividualModel[] = [];
   private overall = '../assets/CSV files/IndividualLeaderboard.csv';
   teamList: TeamModel[] = [];
+  dataAvailable=false;
 
   @ViewChild(MatPaginator) paginator!: MatPaginator;
   @ViewChild(MatSort) sort!: MatSort;
@@ -85,6 +86,10 @@ export class IndividualBoardComponent implements OnInit {
         console.log('data is '+data);
         this.teamList = this.csvFileService.parseCSVDataTeam(data,this.userList);
         this.dataSource.data = this.teamList; 
+        if(this.dataSource.data && this.dataSource.data.length>0)
+        this.dataAvailable = true;
+        else
+        this.dataAvailable=false;
         this.displayedColumns= Object.keys(this.teamList[0]); 
         console.log('After the CSV Data :::::: '+ this.teamList);
           this.getcsvData();
@@ -136,6 +141,10 @@ export class IndividualBoardComponent implements OnInit {
         console.log('data is ' + data)
         this.userList = this.csvFileService.parseCSVDataIndividual(data);
         this.dataSource.data=this.userList;
+        if(this.dataSource.data && this.dataSource.data.length>0)
+        this.dataAvailable = true;
+        else
+        this.dataAvailable=false;
         this.displayedColumns= Object.keys(this.userList[0]); 
         console.log('After the CSV Data :::::: ' + this.userList);
         this.getcsvData();
@@ -191,7 +200,7 @@ export class IndividualBoardComponent implements OnInit {
   else if(mediaQuery1.matches)
   calculatedHeight = 250;
   console.log("Calculate height",calculatedHeight);
-    return calculatedHeight + 'px';
+  return calculatedHeight + 'px';
     
   }
 }
