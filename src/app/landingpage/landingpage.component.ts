@@ -26,9 +26,10 @@ export class LandingpageComponent  {
   dataSource = new MatTableDataSource<any>(this.userList);
   displayedColumns: string[] = ['Ecode', 'Name', 'Score'];
  
+  homePage = true;
   constructor(private dataService: DataService, private csvFileService: CsvFileService) { }
   ngOnInit(): void {
-    this.dataService.changeMessage('IndividualBoardComponent');
+    this.dataService.changeMessage('HomeComponent');
     this.fetchCSVData(this.overall);
   }
 
@@ -48,14 +49,15 @@ export class LandingpageComponent  {
 
   barChartOptions : any = {
     scales: {
-      x: [{ ticks: { fontSize: 2 },gridLines: {
+      x: [{ ticks: { fontSize: 2,fontColor: 'black' },gridLines: {
         display: false, // hide x-axis grid lines
       },},],
-      y: [{ ticks: { fontSize: 10 } ,gridLines: {
+      y: [{ ticks: { fontSize: 2,fontColor: 'black' } ,gridLines: {
         display: false, // hide x-axis grid lines
       }}],
     },
     scaleShowVerticalLines: false,
+    scaleShowHorizontalLines:false,
     responsive: true,
     elements: {
       line: {
@@ -69,7 +71,7 @@ export class LandingpageComponent  {
   barChartType: ChartType = 'bar'; // Use Chart.ChartType type
 
   barChartData = [
-    { data: [65, 59, 80, 81,24,79], label: 'Members partcipated',backgroundColor: '#74C657',hoverBackgroundColor: '#4CAF20'},
+    { data: [65, 59, 80, 81,24,79], label: 'Members partcipated',backgroundColor: '#74C657',hoverBackgroundColor: '#4CAF20',color:'#333'},
     
   ];
   trackByFn(index: number, item: any) {

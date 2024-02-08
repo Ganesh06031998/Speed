@@ -1,9 +1,12 @@
 .score-grid{
-    padding: 5%;;
+    padding: 5%;
 }
-
+.chartjs-chart-title {
+    color: black;
+  }
 .col-md-6{
     padding: 3%;
+    font-family: 'KerminaWeb', sans-serif !important;
 }
 
 .hover:hover{
@@ -13,3 +16,13 @@
 .color{
     color: #74C657;
 }
+
+.mat-mdc-row{
+    font-family: var(--mat-table-row-item-label-text-font, 'KerminaWeb', sans-serif) !important;
+}
+
+@media screen and (max-width: 600px) {
+    .x-axis-labels {
+      font-size: 12px;
+    }
+  }

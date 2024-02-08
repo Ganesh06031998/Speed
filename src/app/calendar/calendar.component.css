@@ -4,6 +4,9 @@
 .text-center{
     padding-top: 2% !important;
 }
+.container{
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.5);
+}
 
 /**Media Query for tablet**/
 @media screen and (max-width: 768px) {

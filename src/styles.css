@@ -1,5 +1,10 @@
 /* You can add global styles to this file, and also import other style files */
-
+@font-face {
+  font-family: 'KerminaWeb';
+  src: local('KerminaWeb'), url('./assets/fonts/KareliaWeb-Regular.woff2') format('woff2');
+  font-weight: normal;
+  font-style: normal;
+}
 app-root {
     display: block;
     height: 100%;
@@ -7,7 +12,7 @@ app-root {
   }
 html, body { height: 100%; width: auto; }
 
-body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+body { margin: 0; font-family: 'KerminaWeb', sans-serif; }
 @import '~chart.js/dist/chart.css';
 
 /**Scrollbar Customization**/

@@ -1,3 +1,8 @@
+.col-2 {
+  -ms-flex: 0 0 16.666667%;
+  flex: 0 0 24.666667%;
+  max-width: 25.666667%;
+}
 /*Toolbar navigation CSS*/
 .table-container {
   position: relative;
@@ -145,12 +150,18 @@
 }
 
 @media screen and (max-width: 1100px) {
+  .form-control{
+    font-size: xx-small;
+  }
   .coming-soon-overlay {
     height: 54%;
   }
 }
 /**Media Query for tablet**/
 @media screen and (max-width: 770px) {
+  .form-control{
+    font-size: xx-small;
+  }
   .coming-soon-overlay {
     height: 45%;}
     .coming-soon-text{
@@ -204,7 +215,7 @@
     width: 103% !important;
   }
   .row,.mb3>h4,.form-control{
-    font-size: x-small !important;
+    font-size: 76% !important;
   }
   .mat-mdc-cell,.mat-mdc-header-row{
     font-size: x-small !important;
@@ -220,7 +231,15 @@
 
 /**Media Query for tablet**/
 @media screen and (max-width: 483px) {
+  .col-2 {
+    -ms-flex: 0 0 16.666667%;
+    flex: 0 0 24.666667%;
+    max-width: 25.666667%;
+}
 
+  .form-control{
+    font-size: xx-small;
+  }
   .coming-soon-overlay {
     height: 45%;
 }
@@ -302,7 +321,7 @@
   .col-3 {
     flex: 0 0 43%;
     max-width: 33%;
-    padding-right: 0px;
+    padding-right: 15px;
     padding-left: 12px;}
     .col-sm-8 {
       height: 70px;
