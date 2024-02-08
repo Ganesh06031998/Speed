@@ -18,7 +18,7 @@
         </div>
       </ng-container>
     </div>
-    <div class="row mb-1" *ngIf="displayedColumns.length !== 3">
+    <div class="row mb-3" *ngIf="displayedColumns.length !== 3">
       <!-- Render the filters without flex styling when the count is not 3 -->
       <ng-container *ngFor="let col of displayedColumns">
         <div class="col-2" style="display: flex; justify-content: space-between;">
@@ -30,10 +30,10 @@
      <!--LeaderBoard Table-->
     <table  mat-table [dataSource]="dataSource" class="mat-elevation-z8 table-striped table-hover " matSort>
   
-      <ng-container *ngFor="let col of displayedColumns" [matColumnDef]="col">
+      <ng-container *ngFor="let col of displayedColumns" [matColumnDef]="col" [style.text-align]="col === 'Score' ? 'right' : 'left'" [style.padding-right.%]="col === 'Score' ? 11 : 0">
         <th mat-header-cell *matHeaderCellDef mat-sort-header style="background-color: #74C657;color: white;font-family: 'KerminaWeb', sans-serif;">{{ col }}</th>
-      <td mat-cell *matCellDef="let team" style="font-family: 'KerminaWeb', sans-serif;">
-        <ng-container *ngIf="col !== 'TeamMembers'; else teamMembersColumn" >
+      <td mat-cell *matCellDef="let team" style="font-family: 'KerminaWeb', sans-serif;" >
+        <ng-container *ngIf="col !== 'TeamMembers'; else teamMembersColumn" [style.text-align]="col === 'Score' ? 'right' : 'left'" [style.padding-right.%]="col === 'Score' ? 11 : 0" >
           {{ team[col] }}
         </ng-container>
 
@@ -57,13 +57,13 @@
     <!--Points indication-->
     <div class="row">
       <div class="col-md-3">
-      <p>100 points - Winner</p>
+      <p>15 points - Winner</p>
       </div>
       <div class="col-md-3">
-      <p>50 points - 1st Runner</p>
+      <p>10 points - 1st Runner</p>
       </div>
       <div class="col-md-3">
-        <p>25 points - 2nd Runner</p>
+        <p>5 points - 2nd Runner</p>
       </div>
       <div class="col-md-3">
         <p>1 point - Participant</p>
