@@ -215,9 +215,11 @@ export class IndividualBoardComponent implements OnInit {
             } else {
               // If the model doesn't exist, add it to the merged array
               mergedIndividualModels.push({ ...individualModel });
-              this.userList = mergedIndividualModels;
-              this.dataSource.data = this.userList;
+             
             }
+            mergedIndividualModels.sort((a, b) => (b.Score || 0) - (a.Score || 0));
+            this.userList = mergedIndividualModels;
+            this.dataSource.data = this.userList;
           }
         });
     }
