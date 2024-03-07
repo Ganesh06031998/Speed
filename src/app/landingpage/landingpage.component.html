@@ -40,7 +40,7 @@
         <h2 style="color: #74C657;text-align: center;padding: 1%;">Top 10 SPEED Performers</h2>
         <table mat-table [dataSource]="dataSource" class="mat-elevation-z8 table-striped table-hover">
           <ng-container *ngFor="let col of displayedColumns" [matColumnDef]="col">
-            <th mat-header-cell *matHeaderCellDef style="background-color: #74C657; color: white;" [style.text-align]="col === 'Score' ? 'right' : 'left'" [style.padding-right.%]="col === 'Score' ? 10 : 0">{{ col }}</th>
+            <th mat-header-cell *matHeaderCellDef style="background-color: #74C657; color: white;" [style.text-align]="col === 'Score' ? 'right' : 'left'" [style.padding-right.%]="col === 'Score' ? 5 : 0">{{ col }}</th>
             <td mat-cell *matCellDef="let team" [style.text-align]="col === 'Score' ? 'right' : 'left'" [style.padding-right.%]="col === 'Score' ? 11 : 0">
               <ng-container *ngIf="team[col]">
                 <div [@slideAnimation] style="width: 100%;">{{ team[col] }}</div>

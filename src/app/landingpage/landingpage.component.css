@@ -25,4 +25,8 @@
     .x-axis-labels {
       font-size: 12px;
     }
+    .col-md-6{
+        padding: 3%;
+        font-size: x-small;
+    }
   }

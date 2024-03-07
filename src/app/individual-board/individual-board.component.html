@@ -35,6 +35,9 @@
       <td mat-cell *matCellDef="let team" style="font-family: 'KerminaWeb', sans-serif;" >
         <ng-container *ngIf="col !== 'TeamMembers'; else teamMembersColumn" [style.text-align]="col === 'Score' ? 'right' : 'left'" [style.padding-right.%]="col === 'Score' ? 11 : 0" >
           {{ team[col] }}
+          <button *ngIf="col === 'Nam'" mat-icon-button (click)="openPopup(team)" >
+            <mat-icon>info</mat-icon>
+          </button>
         </ng-container>
 
         <!-- Handling the 'teamMembers' column separately -->
@@ -45,6 +48,9 @@
             </span>
           </span>
           <span *ngIf="!(team.TeamMembers && team.TeamMembers.length > 0)">No members</span>
+          <button *ngIf="col === 'Nam'" mat-icon-button (click)="openPopup(team)">
+            <mat-icon>info</mat-icon>
+          </button>
         </ng-template>
       </td>
     </ng-container>

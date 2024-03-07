@@ -22,6 +22,8 @@ import { MatInputModule } from '@angular/material/input';
 import { SortMembersPipe } from './sort-members.pipe';
 import { LandingpageComponent } from './landingpage/landingpage.component';
 import { NgChartsModule } from 'ng2-charts';
+import { MatIconModule } from '@angular/material/icon';
+import { PopupComponent } from './popup/popup.component';
 
 @NgModule({
   declarations: [
@@ -35,7 +37,8 @@ import { NgChartsModule } from 'ng2-charts';
     HeaderComponent,
     FooterComponent,
     SortMembersPipe,
-    LandingpageComponent
+    LandingpageComponent,
+    PopupComponent
   ],
   imports: [
     NgChartsModule,
@@ -48,7 +51,8 @@ import { NgChartsModule } from 'ng2-charts';
     MatTableModule,
     MatSortModule,
     MatInputModule,
-    CountUpModule
+    CountUpModule,
+    MatIconModule
   ],
   providers: [],
   bootstrap: [AppComponent]

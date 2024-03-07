@@ -13,6 +13,9 @@ import { MatTableDataSource } from '@angular/material/table';
 import { MatSort } from '@angular/material/sort';
 import { TeamModel } from '../shared/team.model';
 import { ActivatedRoute, Router } from '@angular/router';
+import { MatDialog, MatDialogConfig } from '@angular/material/dialog';
+import { PopupComponent } from '../popup/popup.component';
+
 
 @Component({
   selector: 'app-individual-board',
@@ -115,7 +118,8 @@ export class IndividualBoardComponent implements OnInit {
     private dataService: DataService,
     private route: ActivatedRoute,
     private csvFileService: CsvFileService,
-    private cdr: ChangeDetectorRef
+    private cdr: ChangeDetectorRef,
+    private dialog: MatDialog
   ) {}
 
   ngOnInit(): void {
@@ -338,5 +342,18 @@ export class IndividualBoardComponent implements OnInit {
     } else if (mediaQuery1.matches) calculatedHeight = 250;
     console.log('Calculate height', calculatedHeight);
     return calculatedHeight + 'px';
+  }
+
+  openPopup(team: any) {
+    const dialogConfig = new MatDialogConfig();
+  
+    dialogConfig.data = {
+      name: team.Name,
+      score: team.Score,
+      event: team.EventParticipated,
+      ranking: team.Ranking
+    };
+  
+    const dialogRef = this.dialog.open(PopupComponent, dialogConfig);
   }
 }
